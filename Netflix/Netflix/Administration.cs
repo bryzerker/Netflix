@@ -5,10 +5,21 @@ using System.Web;
 
 namespace Netflix
 {
+    /*
+     * Dit is de klasse die de webforms laat communiceren met de databseclasse.
+     * Alles wat op een form uit de database gehaald moet worden gaat via deze klasse
+     * Ook alles wat IN de database moet worden gezet vanuit de webforms gaat via hier.
+     */
 
     public class Administration
     {
+        //Private database om daar meet te communiceren, in de webforms bestaat er dan een private Administration om daar dingen door te geven
         private database db = new database();
+
+
+        // In pincipe alleen methodes die strings/ints/lists van strings ophalan
+        // De andere methodes zijn voids die een insertquery uitvoeren in de db klasse.
+
 
         public List<String> Shows()
         {
