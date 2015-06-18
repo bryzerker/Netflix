@@ -7,13 +7,16 @@ using System.Web.Configuration;
 
 namespace Netflix
 {
+    //dit is dus de datbase connectie
     public class database
     {
         private OracleConnection connectie = new OracleConnection();
+        //De connectie string is opgeslagen in de webconfig onder de naam ConString, en word hieronder opgehaald.
         private string conn = WebConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
 
         public void Connectieopen()
         {
+            // Opent de connectie met de database, sluit de connectie als er iets mis gaat.
             try
             {
                 connectie = new OracleConnection();
@@ -27,6 +30,7 @@ namespace Netflix
 
         }
 
+        // Deze haalt alle shows op
         public List<string> GetShows()
         {
             List<string> resultaat = new List<string>();
@@ -54,6 +58,7 @@ namespace Netflix
             return resultaat;
         }
 
+        //Deze controlleert of het emailadres en wachtwoord bij elkaar horen (of iemand dus goed inlogt)
         public bool checkLogin(string email, string password)
         {
             bool resultaat = false;
@@ -87,6 +92,7 @@ namespace Netflix
             return resultaat;
         }
 
+        //Deze haalt alle profielen op van het account wat woord meegegeven via de email parameter
         public List<string> GetProfiles(string email)
         {
             List<string> resultaat = new List<string>();
@@ -115,6 +121,7 @@ namespace Netflix
             return resultaat;
         }
 
+        //Deze haalt op welke categorie een bepaaalde profiel is (Volwassene of kind) Word niet meer gebruikt.
         public string GetProfileCat(string email, string naam)
         {
             string resultaat = "";
@@ -144,6 +151,7 @@ namespace Netflix
             return resultaat;
         }
 
+        //Deze haal alle shows op die bij een profiel horen (dus de persoonlijke lijst)
         public List<string> GetProfileShows(string email, string profile)
         {
             List<string> resultaat = new List<string>();
@@ -173,6 +181,7 @@ namespace Netflix
             return resultaat;
         }
 
+        //Deze methode haalt de omschrijving van een bepaalde show op
         public string GetShowInfo(string titel)
         {
             string resultaat = "";
